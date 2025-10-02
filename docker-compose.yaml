@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo:6
+    container_name: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    build: ./backend
+    container_name: backend
+    restart: always
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo
+    environment:
+      - PORT=5000
+      - MONGO_URI=mongodb://mongo:27017/devops
+      - JWT_SECRET=jwtsecret123
+      - CLOUDINARY_CLOUD_NAME=dhz9zlhsp
+      - CLOUDINARY_API_KEY=949359731773965
+      - CLOUDINARY_API_SECRET=qffwQPUZjF7wIDymuRNfTbhv3SQ
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    restart: always
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+   
+volumes:
+  mongo_data:
