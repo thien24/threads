@@ -1,7 +1,7 @@
 import cron from "cron";
 import https from "https";
 
-const URL = "https://threads-clone-9if3.onrender.com";
+const URL = "http://34.234.93.66:3000";
 
 const job = new cron.CronJob("*/14 * * * *", function () {
 	https
@@ -16,6 +16,7 @@ const job = new cron.CronJob("*/14 * * * *", function () {
 			console.error("Error while sending request", e);
 		});
 });
+
 
 export default job;
 
