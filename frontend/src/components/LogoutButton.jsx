@@ -4,13 +4,16 @@ import userAtom from "../atoms/userAtom";
 import useShowToast from "../hooks/useShowToast";
 import { FiLogOut } from "react-icons/fi";
 
+
+const BASE_URL = "http://34.234.93.66:5000";
+
 const LogoutButton = () => {
 	const setUser = useSetRecoilState(userAtom);
 	const showToast = useShowToast();
 
 	const handleLogout = async () => {
 		try {
-			const res = await fetch("/api/users/logout", {
+			const res = await fetch(`${BASE_URL}/api/users/logout`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",

@@ -2,13 +2,16 @@ import userAtom from "../atoms/userAtom";
 import { useSetRecoilState } from "recoil";
 import useShowToast from "./useShowToast";
 
+
+const BASE_URL = "http://34.234.93.66:5000";
+
 const useLogout = () => {
 	const setUser = useSetRecoilState(userAtom);
 	const showToast = useShowToast();
 
 	const logout = async () => {
 		try {
-			const res = await fetch("/api/users/logout", {
+			const res = await fetch(`${BASE_URL}/api/users/logout`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",

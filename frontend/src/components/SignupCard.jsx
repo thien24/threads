@@ -21,6 +21,9 @@ import authScreenAtom from "../atoms/authAtom";
 import useShowToast from "../hooks/useShowToast";
 import userAtom from "../atoms/userAtom";
 
+
+const BASE_URL = "http://34.234.93.66:5000";
+
 export default function SignupCard() {
 	const [showPassword, setShowPassword] = useState(false);
 	const setAuthScreen = useSetRecoilState(authScreenAtom);
@@ -36,7 +39,7 @@ export default function SignupCard() {
 
 	const handleSignup = async () => {
 		try {
-			const res = await fetch("/api/users/signup", {
+			const res = await fetch(`${BASE_URL}/api/users/signup`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",

@@ -8,6 +8,9 @@ import useGetUserProfile from "../hooks/useGetUserProfile";
 import { useRecoilState } from "recoil";
 import postsAtom from "../atoms/postsAtom";
 
+
+const BASE_URL = "http://34.234.93.66:5000";
+
 const UserPage = () => {
 	const { user, loading } = useGetUserProfile();
 	const { username } = useParams();
@@ -20,7 +23,7 @@ const UserPage = () => {
 			if (!user) return;
 			setFetchingPosts(true);
 			try {
-				const res = await fetch(`/api/posts/user/${username}`);
+				const res = await fetch(`${BASE_URL}/api/posts/user/${username}`);
 				const data = await res.json();
 				console.log(data);
 				setPosts(data);

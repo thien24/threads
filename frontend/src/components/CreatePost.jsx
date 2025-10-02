@@ -28,6 +28,7 @@ import postsAtom from "../atoms/postsAtom";
 import { useParams } from "react-router-dom";
 
 const MAX_CHAR = 500;
+const BASE_URL = "http://34.234.93.66:5000";
 
 const CreatePost = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
@@ -57,7 +58,7 @@ const CreatePost = () => {
 	const handleCreatePost = async () => {
 		setLoading(true);
 		try {
-			const res = await fetch("/api/posts/create", {
+			const res = await fetch(`${BASE_URL}/api/posts/create`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",

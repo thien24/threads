@@ -11,6 +11,9 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import userAtom from "../atoms/userAtom";
 import postsAtom from "../atoms/postsAtom";
 
+
+const BASE_URL = "http://34.234.93.66:5000";
+
 const Post = ({ post, postedBy }) => {
 	const [user, setUser] = useState(null);
 	const showToast = useShowToast();
@@ -21,7 +24,7 @@ const Post = ({ post, postedBy }) => {
 	useEffect(() => {
 		const getUser = async () => {
 			try {
-				const res = await fetch("/api/users/profile/" + postedBy);
+				const res = await fetch(`${BASE_URL}/api/users/profile/` + postedBy);
 				const data = await res.json();
 				if (data.error) {
 					showToast("Error", data.error, "error");

@@ -3,6 +3,9 @@ import useShowToast from "./useShowToast";
 import userAtom from "../atoms/userAtom";
 import { useRecoilValue } from "recoil";
 
+
+const BASE_URL = "http://34.234.93.66:5000";
+
 const useFollowUnfollow = (user) => {
 	const currentUser = useRecoilValue(userAtom);
 	const [following, setFollowing] = useState(user.followers.includes(currentUser?._id));
@@ -18,7 +21,7 @@ const useFollowUnfollow = (user) => {
 
 		setUpdating(true);
 		try {
-			const res = await fetch(`/api/users/follow/${user._id}`, {
+			const res = await fetch(`${BASE_URL}/api/users/follow/${user._id}`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",

@@ -20,6 +20,8 @@ import userAtom from "../atoms/userAtom";
 import useShowToast from "../hooks/useShowToast";
 import postsAtom from "../atoms/postsAtom";
 
+const BASE_URL = "http://34.234.93.66:5000";
+
 const Actions = ({ post }) => {
 	const user = useRecoilValue(userAtom);
 	const [liked, setLiked] = useState(post.likes.includes(user?._id));
@@ -36,7 +38,7 @@ const Actions = ({ post }) => {
 		if (isLiking) return;
 		setIsLiking(true);
 		try {
-			const res = await fetch("/api/posts/like/" + post._id, {
+			const res = await fetch(`${BASE_URL}/api/posts/like/` + post._id, {
 				method: "PUT",
 				headers: {
 					"Content-Type": "application/json",
@@ -78,7 +80,7 @@ const Actions = ({ post }) => {
 		if (isReplying) return;
 		setIsReplying(true);
 		try {
-			const res = await fetch("/api/posts/reply/" + post._id, {
+			const res = await fetch(`${BASE_URL}/api/posts/reply/` + post._id, {
 				method: "PUT",
 				headers: {
 					"Content-Type": "application/json",
