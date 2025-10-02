@@ -16,7 +16,7 @@ const SuggestedUsers = () => {
       try {
         const res = await fetch(`${BASE_URL}/api/users/suggested`, {
           method: "GET",
-          credentials: "include", // gửi cookie JWT
+          credentials: "include", 
         });
         const data = await res.json();
 
