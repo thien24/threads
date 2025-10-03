@@ -26,6 +26,7 @@ const useFollowUnfollow = (user) => {
 				headers: {
 					"Content-Type": "application/json",
 				},
+				credentials: "include",
 			});
 			const data = await res.json();
 			if (data.error) {
