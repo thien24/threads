@@ -47,6 +47,7 @@ const Post = ({ post, postedBy }) => {
 
 			const res = await fetch(`/api/posts/${post._id}`, {
 				method: "DELETE",
+				credentials: "include",
 			});
 			const data = await res.json();
 			if (data.error) {
