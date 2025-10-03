@@ -46,7 +46,9 @@ const ChatPage = () => {
 	useEffect(() => {
 		const getConversations = async () => {
 			try {
-				const res = await fetch(`${BASE_URL}/api/messages/conversations`);
+				const res = await fetch(`${BASE_URL}/api/messages/conversations`,{
+					credentials: "include",
+				});
 				const data = await res.json();
 				if (data.error) {
 					showToast("Error", data.error, "error");
